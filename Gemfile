@@ -10,6 +10,7 @@ gem "stimulus-rails"
 gem "tailwindcss-rails"
 gem "tzinfo-data", platforms: %i[ windows jruby ]
 gem "bootsnap", require: false
+gem "redis", ">= 4.0.1"
 
 group :development, :test do
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
