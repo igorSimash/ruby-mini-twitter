@@ -3,11 +3,10 @@ class CreateTweets < ActiveRecord::Migration[7.2]
     create_table :tweets do |t|
       t.text :body
       t.references :user, null: false, foreign_key: true
-      t.bigint :origin_id, null: true
-      t.datetime :created_at, null: false
+      t.references :origin, foreign_key: { to_table: :tweets }
+      t.timestamps
     end
 
-    add_foreign_key :tweets, :tweets, column: :origin_id
-    add_index :tweets, :origin_id
+    add_index :tweets, :body
   end
 end

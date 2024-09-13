@@ -4,7 +4,7 @@ class CreateComments < ActiveRecord::Migration[7.2]
       t.text :body, null: false
       t.references :user, null: false, foreign_key: true
       t.references :tweet, null: false, foreign_key: true
-      t.datetime :created_at, null: false
+      t.timestamps
     end
   end
 end
