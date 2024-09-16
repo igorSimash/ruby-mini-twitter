@@ -1,8 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  subject { User.new(username: "usernameex", email: "email@example.com", password: "password123") }
-
   context 'associations' do
     it { is_expected.to have_many(:tweets).dependent(:destroy) }
     it { is_expected.to have_many(:likes).dependent(:destroy) }
