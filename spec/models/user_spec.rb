@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id                 :bigint           not null, primary key
+#  username           :string           default(""), not null
+#  email              :string           default(""), not null
+#  encrypted_password :string           default(""), not null
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
