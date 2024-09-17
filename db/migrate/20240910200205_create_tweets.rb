@@ -6,7 +6,5 @@ class CreateTweets < ActiveRecord::Migration[7.2]
       t.references :origin, foreign_key: { to_table: :tweets }
       t.timestamps
     end
-
-    add_index :tweets, :body
   end
 end

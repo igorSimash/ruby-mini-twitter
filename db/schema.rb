@@ -40,7 +40,6 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_10_202730) do
     t.bigint "origin_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["body"], name: "index_tweets_on_body"
     t.index ["origin_id"], name: "index_tweets_on_origin_id"
     t.index ["user_id"], name: "index_tweets_on_user_id"
   end
