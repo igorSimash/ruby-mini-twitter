@@ -11,14 +11,17 @@ gem "tailwindcss-rails"
 gem "tzinfo-data", platforms: %i[ windows jruby ]
 gem "bootsnap", require: false
 gem "redis", ">= 4.0.1"
+gem "devise"
 
 group :development, :test do
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
   gem "brakeman", require: false
   gem "rubocop-rails-omakase", require: false
   gem "rspec-rails", "~> 7.0.1"
+  gem "shoulda-matchers", "~> 6.4"
 end
 
 group :development do
   gem "web-console"
+  gem "annotate"
 end
