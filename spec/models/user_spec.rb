@@ -2,12 +2,13 @@
 #
 # Table name: users
 #
-#  id                 :bigint           not null, primary key
-#  username           :string           default(""), not null
-#  email              :string           default(""), not null
-#  encrypted_password :string           default(""), not null
-#  created_at         :datetime         not null
-#  updated_at         :datetime         not null
+#  id                  :bigint           not null, primary key
+#  username            :string           default(""), not null
+#  email               :string           default(""), not null
+#  encrypted_password  :string           default(""), not null
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
+#  remember_created_at :datetime
 #
 require 'rails_helper'
 
@@ -22,6 +23,8 @@ RSpec.describe User, type: :model do
     it { is_expected.to validate_presence_of(:username) }
     it { is_expected.to validate_uniqueness_of(:username).case_insensitive }
     it { is_expected.to validate_length_of(:username).is_at_least(3).is_at_most(20) }
+    it { is_expected.to allow_value('valid_username1').for(:username) }
+    it { is_expected.not_to allow_value('invalid@username').for(:username) }
 
     it { is_expected.to validate_presence_of(:email) }
     it { is_expected.to validate_uniqueness_of(:email).case_insensitive }
