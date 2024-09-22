@@ -5,7 +5,6 @@ default: &default
   pool: 5
   username: <%= Rails.application.credentials.user[:name] %>
   password: <%= Rails.application.credentials.user[:pass] %>
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 development:
   <<: *default
   database: mini_twitter_development
