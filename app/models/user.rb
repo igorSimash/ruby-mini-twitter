@@ -19,7 +19,8 @@ class User < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :comments, dependent: :destroy
 
-  validates :username, presence: true, uniqueness: true, length: { minimum: 3, maximum: 20 }, format: { with: /\A[a-zA-Z0-9_]+\z/, message: "can only contain Latin letters, numbers, and underscores" }
+  validates :username, presence: true, uniqueness: true, length: { minimum: 3, maximum: 20 },
+      format: { with: /\A[a-zA-Z0-9_]+\z/, message: "can only contain Latin letters, numbers, and underscores" }
   validates :email, presence: true, uniqueness: true
   validates :encrypted_password, presence: true
 
@@ -27,7 +28,9 @@ class User < ApplicationRecord
     conditions = warden_condition.dup
     login = conditions.delete(:login)
     where(conditions).where(
-      [ "lower(username) = :value OR lower(email) = :value",
-      { value: login.strip.downcase } ]).first
+      [
+        "lower(username) = :value OR lower(email) = :value",
+        { value: login.strip.downcase }
+      ]).first
   end
 end
