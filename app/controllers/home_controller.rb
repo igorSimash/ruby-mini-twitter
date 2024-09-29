@@ -6,8 +6,8 @@ class HomeController < ApplicationController
   private
 
   def redirect_logged_in_user
-    if user_signed_in?
-      redirect_to edit_user_registration_path # TODO: Change after creating main tweets route
-    end
+    return unless user_signed_in?
+
+    redirect_to edit_user_registration_path # TODO: Change after creating main tweets route
   end
 end
