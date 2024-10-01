@@ -13,6 +13,8 @@ gem "bootsnap", require: false
 gem "redis", ">= 4.0.1"
 gem "devise"
 gem "inline_svg"
+gem "kaminari"
+gem "requestjs-rails"
 
 group :development, :test do
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"

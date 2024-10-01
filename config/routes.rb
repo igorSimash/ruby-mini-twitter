@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
-  devise_scope :user do
-    authenticated :user do
-      root "devise/registrations#edit", as: :authenticated_root # TODO: Change after creating tweets#index
-    end
+  authenticated :user do
+    root "tweets#index", as: :authenticated_root
   end
 
   unauthenticated :user do
@@ -10,6 +8,8 @@ Rails.application.routes.draw do
   end
 
   devise_for :users, only: [ :sessions, :registrations ]
+
+  resources :tweets
 
   get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
