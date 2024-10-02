@@ -1,5 +1,5 @@
 class TweetsController < ApplicationController
-  # before_action :authenticate_user!
+  before_action :authenticate_user!
   before_action :set_tweet, only: [ :show, :edit, :update, :destroy ]
   before_action :authorize_user!, only: [ :edit, :update, :destroy ]
   # GET /tweets
@@ -46,7 +46,7 @@ class TweetsController < ApplicationController
   # DELETE /tweets/1
   def destroy
     @tweet.destroy!
-    redirect_to authenticated_root_path, status: :see_other
+    redirect_to authenticated_root_path, notice: "Tweet was successfully destroyed.", status: :see_other
   end
 
   private

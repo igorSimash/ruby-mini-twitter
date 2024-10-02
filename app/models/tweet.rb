@@ -18,4 +18,5 @@ class Tweet < ApplicationRecord
   has_many :retweets, class_name: "Tweet", foreign_key: "origin_id"
 
   validates :body, length: { maximum: 300 }
+  validates :body, presence: true, unless: -> { origin_id.present? }
 end
