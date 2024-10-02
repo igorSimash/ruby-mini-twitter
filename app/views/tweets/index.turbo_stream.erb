@@ -1,5 +1,6 @@
 <%= turbo_stream.append "tweets" do %>
   <%= render partial: "tweets/tweet", collection: @tweets %>
+
   <% if @tweets.page(@page.to_i + 1).out_of_range? %>
     <span class="hidden" data-pagination-target="lastPage"></span>
   <% end %>

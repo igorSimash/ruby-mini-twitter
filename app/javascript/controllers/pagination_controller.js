@@ -24,11 +24,11 @@ export default class extends Controller {
 
   scroll() {
     if (this.scrollReachedEnd && !this.hasLastPageTarget) {
-      this._fetchNewPage()
+      this.fetchNextPage()
     }
   }
 
-  async _fetchNewPage() {
+  async fetchNextPage() {
     if (this.loading) return;
     this.loading = true;
 
