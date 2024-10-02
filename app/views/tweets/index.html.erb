@@ -5,6 +5,6 @@
       class: "link-primary w-24 md:w-32 md:h-14 font-medium flex items-center justify-center fixed bottom-10 right-2 md:right-5" %>
   <div class="min-w-full" id="tweets" data-controller="pagination"
       data-pagination-url-value="<%= tweets_path %>">
-    <%= render @tweets %>
+    <%= render partial: "tweets/tweet", collection: @tweets %>
   </div>
 </div>

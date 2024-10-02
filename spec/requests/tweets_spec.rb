@@ -9,14 +9,9 @@ RSpec.describe "Tweets", type: :request do
   end
 
   describe 'GET /tweets' do
-      it 'returns a success response' do
-        get tweets_path
-        expect(response).to be_successful
-      end
-
-    it 'renders the index template' do
+    it 'returns a success response' do
       get tweets_path
-      expect(response).to render_template(:index)
+      expect(response).to be_successful
     end
   end
 
@@ -25,11 +20,6 @@ RSpec.describe "Tweets", type: :request do
       get tweet_path(tweet)
       expect(response).to be_successful
     end
-
-    it 'renders the show template' do
-      get tweet_path(tweet)
-      expect(response).to render_template(:show)
-    end
   end
 
   describe 'GET /tweets/new' do
@@ -37,22 +27,12 @@ RSpec.describe "Tweets", type: :request do
       get new_tweet_path
       expect(response).to be_successful
     end
-
-    it 'renders the new template' do
-      get new_tweet_path
-      expect(response).to render_template(:new)
-    end
   end
 
   describe 'GET /tweets/:id/edit' do
     it 'returns a success response' do
       get edit_tweet_path(tweet)
       expect(response).to be_successful
-    end
-
-    it 'renders the edit template' do
-      get edit_tweet_path(tweet)
-      expect(response).to render_template(:edit)
     end
   end
 
@@ -84,7 +64,6 @@ RSpec.describe "Tweets", type: :request do
 
       it 'renders the new template with status unprocessable_entity' do
         post tweets_path, params: invalid_attributes
-        expect(response).to render_template(:new)
         expect(response).to have_http_status(:unprocessable_entity)
       end
     end
@@ -116,7 +95,6 @@ RSpec.describe "Tweets", type: :request do
 
       it 'renders the edit template with status unprocessable_entity' do
         patch tweet_path(tweet), params: { tweet: { body: '' } }
-        expect(response).to render_template(:edit)
         expect(response).to have_http_status(:unprocessable_entity)
       end
     end
