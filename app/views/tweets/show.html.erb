@@ -1,29 +1,32 @@
 <div class="max-w-xl p-8 mx-auto my-8 bg-white shadow-md md:max-w-4xl rounded-xl">
-  <div class="pb-4 mb-4 border-b border-gray-200">
+  <%= link_to authenticated_root_path do %>
+    <%= inline_svg_tag("icons/arrow_left.svg") %>
+  <% end %>
+  <div class="pb-4 my-4 border-b border-gray-200">
     <div class="flex items-center justify-between mb-2">
       <div>
         <p class="mb-0.5 text-lg font-bold">@<%= @tweet.user.username %></p>
         <p class="text-sm text-gray-500"><%= @tweet.created_at.to_formatted_s(:long) %></p>
       </div>
-      <div data-controller="dropdown" class="relative">
-        <button data-action="click->dropdown#toggle" class="text-gray-500 hover:text-gray-700">
-          <%= inline_svg_tag("icons/menu_dots") %>
-        </button>
-        <div data-dropdown-target="menu"
-            class="absolute right-0 hidden w-48 mt-2 transition-all duration-300 bg-white rounded-md shadow-lg top-5 ring-1 ring-black ring-opacity-5 focus:outline-none"
-            role="menu" aria-orientation="vertical" aria-labelledby="retweet-menu">
-          <div class="py-1">
-            <%= link_to "Edit", edit_tweet_path,
-              class:"block px-4 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100", role:"menuitem" %>
-            <%= button_to "Delete", @tweet, method: :delete, data: { turbo: false },
-              class: "block w-full text-left px-4 py-2 text-sm font-medium text-red-600 hover:bg-gray-100", role:"menuitem" %>
+      <% if current_user == @tweet.user %>
+        <div data-controller="dropdown" class="relative">
+          <button data-action="click->dropdown#toggle" class="text-gray-500 hover:text-gray-700">
+            <%= inline_svg_tag("icons/menu_dots") %>
+          </button>
+          <div data-dropdown-target="menu"
+              class="absolute right-0 hidden w-48 mt-2 transition-all duration-300 bg-white rounded-md shadow-lg top-5 ring-1 ring-black ring-opacity-5 focus:outline-none"
+              role="menu" aria-orientation="vertical" aria-labelledby="retweet-menu">
+            <div class="py-1">
+              <%= link_to "Edit", edit_tweet_path,
+                class:"block px-4 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100", role:"menuitem" %>
+              <%= button_to "Delete", @tweet, method: :delete, data: { turbo: false },
+                class: "block w-full text-left px-4 py-2 text-sm font-medium text-red-600 hover:bg-gray-100", role:"menuitem" %>
+            </div>
           </div>
         </div>
-      </div>
+      <% end %>
     </div>
-    <p class="mb-4 text-lg">
-      <%= @tweet.body %>
-    </p>
+    <p class="mb-6 text-lg whitespace-pre-wrap"><%= format_body(@tweet.body) %></p>
     <div class="flex items-center gap-6">
       <button class="flex items-center gap-1 text-gray-500 hover:text-red-500">
         <span class="cursor-pointer hover:text-red-500">

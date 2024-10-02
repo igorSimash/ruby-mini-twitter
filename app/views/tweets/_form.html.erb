@@ -1,17 +1,15 @@
-<%= form_with(model: tweet, class: "contents") do |form| %>
-  <% if tweet.errors.any? %>
-    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
-      <h2><%= pluralize(tweet.errors.count, "error") %> prohibited this tweet from being saved:</h2>
-
-      <ul>
-        <% tweet.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="inline">
-    <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+<%= form_with(model: tweet, class: "space-y-4", data: {controller: "char-count"}) do |f| %>
+  <div>
+    <%= f.label :body, "Tweet", class: "sr-only" %>
+    <%= f.text_area :body, autofocus: true, autocomplete: "body", rows: 6, maxlength: 300,
+      class: "w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none focus:border-blue-500",
+      data: { char_count_target: "textarea",
+              action: "input->char-count#updateCount",
+              max_length: 300 } %>
+  </div>
+  <div class="flex items-center justify-between">
+    <span class="text-sm text-gray-500" id="char-count" data-char-count-target="count">0 / 300</span>
+    <%= f.submit "Tweet",
+        class: "px-4 py-2 text-white bg-blue-500 rounded-full hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50" %>
   </div>
 <% end %>
