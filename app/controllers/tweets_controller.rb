@@ -25,11 +25,14 @@ class TweetsController < ApplicationController
   # POST /tweets
   def create
     @tweet = current_user.tweets.new(tweet_params)
-
-    if @tweet.save
-      redirect_to @tweet, notice: "Tweet was successfully created."
-    else
-      render :new, status: :unprocessable_entity
+    respond_to do |format|
+      if @tweet.save
+        format.html { redirect_to @tweet, notice: "Tweet was successfully created." }
+        format.turbo_stream { render :create, locals: { tweet: @tweet } }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+        format.turbo_stream { redirect_to authenticated_root_path, status: :unprocessable_entity, locals: { tweet: @tweet } }
+      end
     end
   end
 
