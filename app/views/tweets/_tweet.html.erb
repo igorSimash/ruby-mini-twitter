@@ -6,7 +6,7 @@
         <p class="text-sm text-gray-600"><%= tweet.created_at.to_formatted_s(:long) %></p>
       </div>
     </div>
-    <p class="mb-4 text-base font-medium text-gray-700 whitespace-pre-wrap"><%= format_body(tweet.body) %></p>
+    <p class="mb-4 text-base font-medium text-gray-700 break-words whitespace-pre-wrap"><%= format_body(tweet.body) %></p>
     <div class="flex items-center gap-6 text-base font-medium text-gray-500">
       <button class="flex items-center gap-1">
         <span class="cursor-pointer hover:text-red-500">
