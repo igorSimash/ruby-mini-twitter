@@ -42,7 +42,7 @@ class TweetsController < ApplicationController
     if @tweet.update(tweet_params)
       redirect_to @tweet, notice: "Tweet was successfully updated.", status: :see_other
     else
-      render :edit, status: :unprocessable_entity
+      redirect_to @tweet, status: :unprocessable_entity
     end
   end
 

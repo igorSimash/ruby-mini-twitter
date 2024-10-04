@@ -2,7 +2,7 @@
   <div data-controller="char-count" class="space-y-4">
     <div>
       <%= f.label :body, "Tweet", class: "sr-only" %>
-      <%= f.text_area :body, autofocus: true, autocomplete: "body", rows: 6, maxlength: 300,
+      <%= f.text_area :body, autofocus: true, autocomplete: "body", rows: 6, maxlength: 300, required: true,
         class: "w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none focus:border-blue-500",
         data: { char_count_target: "textarea",
                 action: "input->char-count#updateCount",
