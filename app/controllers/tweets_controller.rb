@@ -28,7 +28,7 @@ class TweetsController < ApplicationController
     respond_to do |format|
       if @tweet.save
         format.html { redirect_to @tweet, notice: "Tweet was successfully created." }
-        format.turbo_stream { render :create }
+        format.turbo_stream
       else
         format.html { render :new, status: :unprocessable_entity }
         format.turbo_stream { render :new, status: :unprocessable_entity }
@@ -43,7 +43,7 @@ class TweetsController < ApplicationController
     respond_to do |format|
       if @tweet.update(tweet_params)
         format.html { redirect_to @tweet, notice: "Tweet was successfully updated.", status: :see_other }
-        format.turbo_stream { render :update }
+        format.turbo_stream
       else
         format.html { redirect_to @tweet, status: :unprocessable_entity }
         format.turbo_stream { render :edit, status: :unprocessable_entity }
