@@ -1,6 +1,6 @@
 class TweetsController < ApplicationController
   before_action :authenticate_user!, except: [ :show ]
-  before_action :authorize_user!, only: [ :edit, :update, :destroy ]
+  before_action :check_author!, only: [ :edit, :update, :destroy ]
   # GET /tweets
   def index
     @page = params[:page] || 1
@@ -67,7 +67,7 @@ class TweetsController < ApplicationController
       collection.find(params[:id])
     end
 
-    def authorize_user!
+    def check_author!
       redirect_to authenticated_root_path, alert: "You are not authorized to perform this action." unless resource.user == current_user
     end
 
