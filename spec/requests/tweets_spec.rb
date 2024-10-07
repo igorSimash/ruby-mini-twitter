@@ -1,12 +1,10 @@
 require 'rails_helper'
+require 'support/authentication_context'
 
 RSpec.describe "Tweets", type: :request do
-  let(:user) { User.create(username: "usernameex", email: "user@example.com", password: "password123") }
-  let(:tweet) { Tweet.create(user: user, body: "This is a tweet") }
+  include_context :authenticated_user
 
-  before do
-    sign_in user
-  end
+  let(:tweet) { Tweet.create(user: user, body: "This is a tweet") }
 
   describe 'GET /tweets' do
     it 'returns a success response' do
@@ -17,10 +15,11 @@ RSpec.describe "Tweets", type: :request do
   end
 
   describe 'GET /tweets/:id' do
-    it 'returns a success response' do
+    it 'returns a success response with body' do
       get tweet_path(tweet)
 
       expect(response).to be_successful
+      expect(response.body).to include(tweet.body)
     end
   end
 
