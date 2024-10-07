@@ -1,0 +1,13 @@
+<%= link_to tweet, class: "block max-w-xl mx-auto my-8 bg-white shadow-md rounded-xl md:max-w-3xl" do %>
+  <div class="p-8">
+    <div class="flex items-center mb-4">
+      <div>
+        <p class="text-lg font-semibold text-gray-900">@<%= tweet.user.username %></p>
+        <p class="text-sm text-gray-600"><%= tweet.created_at.to_formatted_s(:long) %></p>
+      </div>
+    </div>
+    <p class="mb-4 text-base font-medium text-gray-700 break-words whitespace-pre-wrap"><%= format_body(tweet.body) %></p>
+
+    <%= render "tweets/shared/tweet_controls", tweet: tweet %>
+  </div>
+<% end %>

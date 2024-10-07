@@ -10,9 +10,10 @@
       </div>
       <% if current_user == @tweet.user %>
         <div data-controller="dropdown" class="relative">
-          <button data-action="click->dropdown#toggle" class="text-gray-500 hover:text-gray-700">
+          <%= button_tag data: {action: "click->dropdown#toggle"}, class: "text-gray-500 hover:text-gray-700" do %>
             <%= inline_svg_tag("icons/menu_dots") %>
-          </button>
+          <% end %>
+
           <div data-dropdown-target="menu"
               class="absolute right-0 hidden w-48 mt-2 transition-all duration-300 bg-white rounded-md shadow-lg top-5 ring-1 ring-black ring-opacity-5 focus:outline-none"
               role="menu" aria-orientation="vertical" aria-labelledby="retweet-menu">
@@ -27,38 +28,7 @@
       <% end %>
     </div>
     <p class="mb-6 text-lg break-words whitespace-pre-wrap" id="tweet-body"><%= format_body(@tweet.body) %></p>
-    <div class="flex items-center gap-6">
-      <button class="flex items-center gap-1 text-gray-500 hover:text-red-500">
-        <span class="cursor-pointer hover:text-red-500">
-          <%= inline_svg_tag("icons/heart.svg") %>
-        </span>
-        <span>
-          <%= @tweet.likes.size %>
-        </span>
-      </button>
-      <button class="flex items-center gap-1 text-gray-500 hover:text-blue-500">
-        <span class="cursor-pointer hover:text-blue-600">
-          <%= inline_svg_tag("icons/comment.svg") %>
-        </span>
-        <span>
-          <%= @tweet.comments.size %>
-        </span>
-      </button>
-      <div data-controller="dropdown" class="relative">
-        <button data-action="click->dropdown#toggle"
-            class="flex items-center gap-1.5 text-gray-500 hover:text-green-500">
-          <%= inline_svg_tag("icons/retweet.svg") %>
-          Retweet
-        </button>
-        <div data-dropdown-target="menu"
-            class="absolute hidden w-48 mt-2 transition-all duration-300 bg-white rounded-md shadow-lg top-5 ring-1 ring-black ring-opacity-5 focus:outline-none"
-            role="menu" aria-orientation="vertical" aria-labelledby="retweet-menu">
-          <div class="py-1">
-            <div class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem">Retweet</div>
-            <div class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem">Repost with comment</div>
-          </div>
-        </div>
-      </div>
-    </div>
+
+    <%= render "tweets/shared/tweet_controls", tweet: @tweet %>
   </div>
 </div>

@@ -1,0 +1,36 @@
+<div class="flex items-center gap-6 text-base font-medium text-gray-500">
+  <div class="flex items-center gap-1">
+    <span class="cursor-pointer hover:text-red-500">
+      <%= inline_svg_tag("icons/heart.svg") %>
+    </span>
+    <span>
+      <%= tweet.likes.size %>
+    </span>
+  </div>
+
+  <div class="flex items-center gap-1">
+    <span class="cursor-pointer hover:text-blue-600">
+      <%= inline_svg_tag("icons/comment.svg") %>
+    </span>
+    <span>
+      <%= tweet.comments.size %>
+    </span>
+  </div>
+
+  <div data-controller="dropdown" class="relative inline-flex">
+    <%= button_tag data: {action: "click->dropdown#toggle"},
+        class: "flex gap-1.5 hover:text-green-500 focus:outline-none" do %>
+      <%= inline_svg_tag("icons/retweet.svg") %>
+      Retweet
+    <% end %>
+
+    <div data-dropdown-target="menu"
+        class="absolute hidden w-48 mt-2 transition-all duration-300 bg-white rounded-md shadow-lg top-5 ring-1 ring-black ring-opacity-5 focus:outline-none"
+        role="menu" aria-orientation="vertical" aria-labelledby="retweet-menu">
+      <div class="py-1" data-controller="stop-propagation" data-action="click->stop-propagation#stop">
+        <div class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem">Retweet</div>
+        <div class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem">Repost with comment</div>
+      </div>
+    </div>
+  </div>
+</div>
