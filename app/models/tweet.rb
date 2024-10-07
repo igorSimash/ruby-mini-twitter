@@ -19,4 +19,6 @@ class Tweet < ApplicationRecord
 
   validates :body, length: { maximum: 300 }
   validates :body, presence: true, unless: -> { origin_id.present? }
+
+  scope :recent, -> { order(created_at: :desc) }
 end

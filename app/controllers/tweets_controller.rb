@@ -60,7 +60,7 @@ class TweetsController < ApplicationController
 
   private
     def collection
-      Tweet.includes(:user, :likes, :comments).order(created_at: :desc)
+      Tweet.includes(:user, :likes, :comments).recent
     end
 
     def resource
