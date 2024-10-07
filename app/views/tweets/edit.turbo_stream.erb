@@ -1,3 +1,3 @@
-<%= turbo_stream.replace "tweet-form" do %>
+<%= turbo_stream.replace dom_id(@tweet, :edit) do %>
   <%= render partial: "tweets/shared/form", locals: {tweet: @tweet} %>
 <% end %>
