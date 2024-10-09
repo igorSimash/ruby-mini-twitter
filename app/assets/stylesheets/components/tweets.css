@@ -30,6 +30,6 @@
   }
 
   .tweet_flash .alert {
-    @apply mx-auto my-5 w-fit px-3 py-1.5 rounded-md
+    @apply mx-auto mt-4 text-sm w-fit px-2 py-1.5 rounded-md
   }
 }
