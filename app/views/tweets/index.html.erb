@@ -5,10 +5,13 @@
     <%= render "tweets/shared/flash_messages" %>
   </div>
 
-  <div class="min-w-full" id="tweets" data-controller="pagination"
-      data-pagination-url-value="<%= tweets_path %>">
+  <div class="min-w-full" id="tweets">
     <%= render partial: "tweets/shared/tweet", collection: @tweets %>
   </div>
+
+  <% if @tweets.next_page %>
+    <%= turbo_frame_tag "load_more", src: tweets_path(page:  @tweets.next_page, format: :turbo_stream), loading: :lazy %>
+  <% end %>
 
    <%= link_to "Post", new_tweet_path, data: {turbo_frame: "modal"}, class: "new_tweet_btn" %>
 </div>

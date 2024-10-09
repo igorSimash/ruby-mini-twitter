@@ -4,8 +4,7 @@ class TweetsController < ApplicationController
 
   # GET /tweets
   def index
-    @page = params[:page] || 1
-    @tweets = collection.page(@page)
+    @tweets = collection.page(params[:page]).per(20)
   end
 
   # GET /tweets/1
