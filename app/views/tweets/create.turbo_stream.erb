@@ -1,3 +1,7 @@
 <%= turbo_stream.prepend "tweets" do %>
   <%= render "tweets/shared/tweet", tweet: @tweet %>
 <% end %>
+
+<%= turbo_stream.replace "tweet_flash" do %>
+  <%= render "tweets/shared/flash_messages" %>
+<% end %>

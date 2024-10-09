@@ -1,0 +1,17 @@
+<% if flash[:notice] %>
+  <div class="alert bg-green-400/50">
+    <%= flash[:notice] %>
+  </div>
+<% end %>
+
+<% if flash[:alert] %>
+  <div class="alert bg-red-500/70">
+    <%= flash[:alert] %>
+  </div>
+<% end %>
+
+<% if flash[:warning] %>
+  <div class="alert bg-red-400/50">
+    <%= flash[:warning] %>
+  </div>
+<% end %>

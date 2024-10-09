@@ -29,11 +29,11 @@ class TweetsController < ApplicationController
 
     respond_to do |format|
       if @tweet.save
-        format.html { redirect_to @tweet, notice: "Tweet was successfully created." }
-        format.turbo_stream
+        format.html { redirect_to @tweet, notice: "Tweet was successfully created" }
+        format.turbo_stream { flash.now[:notice] = "Tweet was successfully created" }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.turbo_stream { render :new, status: :unprocessable_entity }
+        format.turbo_stream { render :new }
       end
     end
   end
@@ -44,11 +44,11 @@ class TweetsController < ApplicationController
 
     respond_to do |format|
       if @tweet.update(tweet_params)
-        format.html { redirect_to @tweet, notice: "Tweet was successfully updated.", status: :see_other }
+        format.html { redirect_to @tweet, notice: "Tweet was successfully updated", status: :see_other }
         format.turbo_stream
       else
         format.html { redirect_to @tweet, status: :unprocessable_entity }
-        format.turbo_stream { render :edit, status: :unprocessable_entity }
+        format.turbo_stream { render :edit }
       end
     end
   end
@@ -57,7 +57,11 @@ class TweetsController < ApplicationController
   def destroy
     @tweet = resource
 
-    @tweet.destroy!
+    if @tweet.destroy
+      flash[:notice] = "Tweet was successfully deleted"
+    else
+      flash[:alert] = "There was an error deleting the tweet"
+    end
 
     redirect_to authenticated_root_path, status: :see_other
   end

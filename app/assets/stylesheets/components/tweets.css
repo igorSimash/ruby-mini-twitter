@@ -20,7 +20,16 @@
     @apply absolute w-48 mt-2 transition-all duration-300 bg-white rounded-md shadow-lg top-5 ring-1 ring-black
     ring-opacity-5 focus:outline-none
   }
+
   .controls_container .dropdown_item {
     @apply block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900
+  }
+
+  .new_tweet_btn {
+    @apply link-primary w-24 md:w-32 md:h-14 font-medium flex items-center justify-center fixed bottom-10 right-2 md:right-5
+  }
+
+  .tweet_flash .alert {
+    @apply mx-auto my-5 w-fit px-3 py-1.5 rounded-md
   }
 }

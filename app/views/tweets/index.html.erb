@@ -1,10 +1,14 @@
 <% content_for :title, "Feed" %>
 
 <div class="relative w-full">
- <%= link_to "Post", new_tweet_path, data: {turbo_frame: "modal"},
-      class: "link-primary w-24 md:w-32 md:h-14 font-medium flex items-center justify-center fixed bottom-10 right-2 md:right-5" %>
+  <div id="tweet_flash" class="tweet_flash">
+    <%= render "tweets/shared/flash_messages" %>
+  </div>
+
   <div class="min-w-full" id="tweets" data-controller="pagination"
       data-pagination-url-value="<%= tweets_path %>">
     <%= render partial: "tweets/shared/tweet", collection: @tweets %>
   </div>
+
+   <%= link_to "Post", new_tweet_path, data: {turbo_frame: "modal"}, class: "new_tweet_btn" %>
 </div>
