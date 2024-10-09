@@ -1,21 +1,26 @@
 import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
-  static targets = ["textarea", "count"];
+  static targets = ["textarea", "counter"];
+
+  static classes = ["warning"];
+
+  static values = {
+    maxLength: { type: Number, default: 100 },
+  }
 
   connect() {
-    this.maxLength = this.element.dataset.maxLength || 300;
     this.updateCount();
   }
 
   updateCount() {
     const currentLength = this.textareaTarget.value.length;
-    this.countTarget.textContent = `${currentLength} / ${this.maxLength}`;
+    this.counterTarget.textContent = `${currentLength} / ${this.maxLengthValue}`;
 
-    if (currentLength >= this.maxLength) {
-      this.countTarget.classList.add("text-red-500");
+    if (currentLength >= this.maxLengthValue) {
+      this.counterTarget.classList.add(this.warningClass);
     } else {
-      this.countTarget.classList.remove("text-red-500");
+      this.counterTarget.classList.remove(this.warningClass);
     }
   }
 }

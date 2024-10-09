@@ -17,10 +17,10 @@ RSpec.describe Like, type: :model do
   end
 
   context 'validations' do
-    let(:user) { User.new(username: "usernameex", email: "user@example.com", password: "password123") }
-    let(:tweet) { Tweet.new(user: user, body: "This is a tweet") }
+    let(:user) { create(:user) }
+    let(:tweet) { create(:tweet, user: user) }
 
-    subject { Like.new(user: user, tweet: tweet) }
+    subject { create(:like, user: user, tweet: tweet) }
 
     it { is_expected.to validate_uniqueness_of(:user_id).scoped_to(:tweet_id) }
   end

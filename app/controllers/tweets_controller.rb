@@ -1,6 +1,7 @@
 class TweetsController < ApplicationController
   before_action :authenticate_user!, except: [ :show ]
   before_action :check_author!, only: [ :edit, :update, :destroy ]
+
   # GET /tweets
   def index
     @page = params[:page] || 1
@@ -25,6 +26,7 @@ class TweetsController < ApplicationController
   # POST /tweets
   def create
     @tweet = current_user.tweets.new(tweet_params)
+
     respond_to do |format|
       if @tweet.save
         format.html { redirect_to @tweet, notice: "Tweet was successfully created." }
@@ -54,24 +56,27 @@ class TweetsController < ApplicationController
   # DELETE /tweets/1
   def destroy
     @tweet = resource
+
     @tweet.destroy!
+
     redirect_to authenticated_root_path, status: :see_other
   end
 
   private
-    def collection
-      Tweet.includes(:user, :likes, :comments).recent
-    end
 
-    def resource
-      collection.find(params[:id])
-    end
+  def collection
+    Tweet.includes(:user, :likes, :comments).recent
+  end
 
-    def check_author!
-      redirect_to authenticated_root_path, alert: "You are not authorized to perform this action." unless resource.user == current_user
-    end
+  def resource
+    collection.find(params[:id])
+  end
 
-    def tweet_params
-      params.require(:tweet).permit(:body)
-    end
+  def check_author!
+    redirect_to authenticated_root_path, alert: "You are not authorized to perform this action." unless resource.user == current_user
+  end
+
+  def tweet_params
+    params.require(:tweet).permit(:body)
+  end
 end

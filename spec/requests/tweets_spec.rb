@@ -1,10 +1,9 @@
 require 'rails_helper'
-require 'support/authentication_context'
 
 RSpec.describe "Tweets", type: :request do
   include_context :authenticated_user
 
-  let(:tweet) { Tweet.create(user: user, body: "This is a tweet") }
+  let(:tweet) { create(:tweet, user: user) }
 
   describe 'GET /tweets' do
     it 'returns a success response' do
