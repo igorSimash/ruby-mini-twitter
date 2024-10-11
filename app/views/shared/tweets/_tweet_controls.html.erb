@@ -23,8 +23,9 @@
     <div data-dropdown-target="menu" class="hidden dropdown_menu"
         role="menu" aria-orientation="vertical" aria-labelledby="retweet-menu">
       <div class="py-1">
-        <p class="dropdown_item" role="menuitem">Retweet</p>
-        <p class="dropdown_item" role="menuitem">Repost with comment</p>
+        <%= button_to "Repost", tweet_repost_path(tweet), method: :post, data: {action: "click->dropdown#close"},
+            class: "dropdown_item" %>
+        <p class="dropdown_item" role="menuitem">Retweet with comment</p>
       </div>
     </div>
   </div>

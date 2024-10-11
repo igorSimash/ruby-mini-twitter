@@ -21,4 +21,12 @@ class Tweet < ApplicationRecord
   validates :body, presence: true, unless: -> { origin_id.present? }
 
   scope :recent, -> { order(created_at: :desc) }
+
+  def repost?
+    origin_id.present? && body.blank?
+  end
+
+  def retweet?
+    origin_id.present? && body.present?
+  end
 end
