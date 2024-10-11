@@ -44,7 +44,7 @@ class TweetsController < ApplicationController
     respond_to do |format|
       if @tweet.update(tweet_params)
         format.html { redirect_to @tweet, notice: "Tweet was successfully updated", status: :see_other }
-        format.turbo_stream
+        format.turbo_stream { flash.now[:notice] = "Tweet was successfully updated" }
       else
         format.html { redirect_to @tweet, status: :unprocessable_entity }
         format.turbo_stream { render :edit }

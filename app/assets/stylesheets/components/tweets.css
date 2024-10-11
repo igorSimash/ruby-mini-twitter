@@ -28,8 +28,4 @@
   .new_tweet_btn {
     @apply link-primary w-24 md:w-32 md:h-14 font-medium flex items-center justify-center fixed bottom-10 right-2 md:right-5
   }
-
-  .tweet_flash .alert {
-    @apply mx-auto mt-4 text-sm w-fit px-2 py-1.5 rounded-md
-  }
 }

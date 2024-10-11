@@ -2,6 +2,6 @@
   <%= render "shared/tweets/repost", tweet: @repost %>
 <% end %>
 
-<%= turbo_stream.update "tweet_flash" do %>
-  <%= render "tweets/shared/flash_messages" %>
+<%= turbo_stream.update "main_flash" do %>
+  <%= render "shared/flash_messages" %>
 <% end %>

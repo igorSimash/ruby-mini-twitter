@@ -1,9 +1,6 @@
 <% content_for :title, "Feed" %>
 
 <div class="relative w-full py-4">
-  <div id="tweet_flash" class="tweet_flash">
-    <%= render "tweets/shared/flash_messages" %>
-  </div>
 
   <div class="min-w-full space-y-8" id="tweets">
     <%= render partial: "tweets/shared/tweet", collection: @tweets %>
