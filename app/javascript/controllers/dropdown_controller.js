@@ -1,7 +1,9 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["menu"]
+  static targets = ["menu"];
+
+  static classes = ["hide"];
 
   connect() {
     document.addEventListener("click", this.outsideClose.bind(this))
@@ -13,7 +15,7 @@ export default class extends Controller {
 
   toggle(event) {
     event.preventDefault();
-    this.menuTarget.classList.toggle("hidden")
+    this.menuTarget.classList.toggle(this.hideClass)
   }
 
   close(event) {
@@ -23,7 +25,7 @@ export default class extends Controller {
 
   outsideClose(event) {
     if (!this.element.contains(event.target)) {
-      this.menuTarget.classList.add("hidden")
+      this.menuTarget.classList.add(this.hideClass)
     }
   }
 }

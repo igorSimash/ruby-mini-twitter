@@ -13,7 +13,7 @@
     </span>
   </div>
 
-  <div data-controller="dropdown" class="relative inline-flex">
+  <div data-controller="dropdown" data-dropdown-hide-class="hidden" class="relative inline-flex">
     <%= button_tag data: {action: "click->dropdown#toggle"},
         class: "flex gap-1.5 hover:text-green-500 focus:outline-none" do %>
       <%= inline_svg_tag("icons/retweet.svg") %>

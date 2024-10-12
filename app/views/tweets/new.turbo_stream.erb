@@ -1,3 +1,1 @@
-<%= turbo_stream.replace "new_tweet" do %>
-  <%= render "tweets/shared/form", tweet: @tweet %>
-<% end %>
+<%= turbo_stream.replace "new_tweet", partial: "tweets/shared/form", locals: { tweet: @tweet } %>
