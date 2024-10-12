@@ -1,17 +1,7 @@
-<% if flash[:notice] %>
-  <div class="alert bg-green-400/70" data-controller="flash-message">
-    <%= flash[:notice] %>
-  </div>
-<% end %>
-
-<% if flash[:alert] %>
-  <div class="alert bg-red-500/80" data-controller="flash-message">
-    <%= flash[:alert] %>
-  </div>
-<% end %>
-
-<% if flash[:warning] %>
-  <div class="alert bg-yellow-400/70" data-controller="flash-message">
-    <%= flash[:warning] %>
-  </div>
+<% flash.each do |type, message| %>
+  <% if message.present? %>
+    <div class="alert <%= flash_class(type) %>">
+      <%= message %>
+    </div>
+  <% end %>
 <% end %>
