@@ -25,7 +25,9 @@
       <div class="py-1">
         <%= button_to "Repost", tweet_repost_path(tweet), method: :post, data: {action: "click->dropdown#close"},
             class: "dropdown_item" %>
-        <p class="dropdown_item" role="menuitem">Retweet with comment</p>
+
+        <%= link_to "Retweet", new_tweet_retweet_path(tweet), data: {turbo_frame: "modal"},
+            class: "dropdown_item" %>
       </div>
     </div>
   </div>

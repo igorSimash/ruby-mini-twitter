@@ -1,5 +1,5 @@
 <div class="show_tweet">
-  <%= link_to authenticated_root_path, class: "inline-block" do %>
+  <%= link_to :back, class: "inline-block" do %>
     <%= inline_svg_tag("icons/arrow_left.svg") %>
   <% end %>
   <div class="pb-4 my-4 border-b border-gray-200">
@@ -27,7 +27,13 @@
         </div>
       <% end %>
     </div>
-    <p class="mb-6 text-lg break-words whitespace-pre-wrap" id="tweet-body"><%= format_body(@tweet.body) %></p>
+    <p class="mb-4 text-lg break-words whitespace-pre-wrap" id="tweet-body"><%= format_body(@tweet.body) %></p>
+
+    <% if @tweet.origin.present? %>
+      <%= link_to tweet_path(@tweet.origin) do %>
+        <%= render "shared/tweets/nested_tweet", tweet: @tweet.origin %>
+      <% end %>
+    <% end %>
 
     <%= render "shared/tweets/tweet_controls", tweet: @tweet %>
   </div>

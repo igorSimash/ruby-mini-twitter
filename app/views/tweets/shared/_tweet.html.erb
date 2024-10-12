@@ -1,5 +1,7 @@
 <% if tweet.repost? %>
   <%= render "shared/tweets/repost", tweet: tweet %>
+<% elsif tweet.retweet? %>
+  <%= render "shared/tweets/retweet", tweet: tweet %>
 <% else %>
   <%= render "shared/tweets/basic_tweet", tweet: tweet %>
 <% end %>

@@ -1,7 +1,3 @@
-<%= turbo_stream.prepend "tweets" do %>
-  <%= render "shared/tweets/repost", tweet: @repost %>
-<% end %>
+<%= turbo_stream.prepend "tweets", partial: "shared/tweets/repost", locals: {tweet: @repost} %>
 
-<%= turbo_stream.update "main_flash" do %>
-  <%= render "shared/flash_messages" %>
-<% end %>
+<%= turbo_stream.update "main_flash", partial: "shared/flash_messages" %>

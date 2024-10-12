@@ -30,7 +30,7 @@
   }
 
   .tweet_item {
-    @apply block max-w-xl mx-auto my-8 bg-white shadow-md rounded-xl md:max-w-3xl
+    @apply block max-w-xl mx-auto bg-white shadow-md rounded-xl md:max-w-3xl
   }
 
   .show_tweet {
