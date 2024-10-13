@@ -50,7 +50,7 @@ RSpec.describe "Tweets", type: :request do
         post tweets_path, params: valid_attributes
 
         expect(response).to redirect_to(Tweet.last)
-        expect(flash[:notice]).to eq('Tweet was successfully created.')
+        expect(flash[:notice]).to eq('Tweet was successfully created')
       end
     end
 
@@ -84,7 +84,7 @@ RSpec.describe "Tweets", type: :request do
         patch tweet_path(tweet), params: new_attributes
 
         expect(response).to redirect_to(tweet)
-        expect(flash[:notice]).to eq('Tweet was successfully updated.')
+        expect(flash[:notice]).to eq('Tweet was successfully updated')
       end
     end
 
