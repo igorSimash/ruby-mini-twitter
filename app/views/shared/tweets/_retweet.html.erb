@@ -8,7 +8,9 @@
       <p class="tweet_body"><%= format_body(tweet.body) %></p>
     <% end %>
 
-    <%= render "shared/tweets/nested_tweet", tweet: tweet.origin %>
+    <%= link_to tweet_path(tweet.origin) do %>
+      <%= render "shared/tweets/nested_tweet", tweet: tweet.origin %>
+    <% end %>
 
     <%= render "shared/tweets/tweet_controls", tweet: tweet %>
   </div>
