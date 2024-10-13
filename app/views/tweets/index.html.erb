@@ -3,7 +3,7 @@
 <div class="relative w-full py-4">
 
   <div class="min-w-full space-y-8" id="tweets">
-    <%= render partial: "tweets/shared/tweet", collection: @tweets %>
+    <%= render partial: "shared/tweets/tweet_variant", collection: @tweets, as: :tweet %>
   </div>
 
   <% if @tweets.next_page %>

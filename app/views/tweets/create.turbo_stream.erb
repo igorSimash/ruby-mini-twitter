@@ -1,4 +1,4 @@
-<%= turbo_stream.prepend "tweets", partial: "shared/tweets/basic_tweet", locals: { tweet: @tweet } %>
+<%= turbo_stream.prepend "tweets", partial: "shared/tweets/tweet_variant", locals: { tweet: @tweet } %>
 
 <%= turbo_stream.remove "modal-container" %>
 
