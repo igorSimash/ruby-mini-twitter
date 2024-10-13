@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   devise_for :users, only: [ :sessions, :registrations ]
 
   resources :tweets do
-    post "/reposts", to: "reposts#create", as: "repost"
+    post "/reposts", to: "reposts#create"
     resources :retweets, only: [ :new, :create ]
   end
 
