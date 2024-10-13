@@ -1,0 +1,9 @@
+<div>
+  <div class="py-1 mt-4 border-b">
+    <p class="font-medium">
+      @<%= tweet.user.username %> reposted
+    </p>
+  </div>
+
+  <%= render "tweets/shared/show/tweet", tweet: tweet.origin %>
+</div>

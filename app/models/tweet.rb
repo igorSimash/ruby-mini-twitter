@@ -15,7 +15,7 @@ class Tweet < ApplicationRecord
   has_many :comments, dependent: :destroy
 
   belongs_to :origin, class_name: "Tweet", optional: true
-  has_many :retweets, class_name: "Tweet", foreign_key: "origin_id"
+  has_many :retweets, class_name: "Tweet", foreign_key: "origin_id", dependent: :destroy
 
   validates :body, length: { maximum: 300 }
   validates :body, presence: true, unless: -> { origin_id.present? }

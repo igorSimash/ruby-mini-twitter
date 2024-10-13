@@ -22,26 +22,6 @@ class RetweetsController < ApplicationController
     end
   end
 
-  # GET /retweets/:id/edit
-  def edit
-    @retweet = current_user.tweets.find(params[:id])
-  end
-
-  # PATCH/PUT /retweets/:id
-  def update
-    @retweet = current_user.tweets.find(params[:id])
-
-    respond_to do |format|
-      if @retweet.update(tweet_params)
-        format.html { redirect_to @retweet, notice: "Retweet was successfully updated", status: :see_other }
-        format.turbo_stream { flash.now[:notice] = "Retweet was successfully updated" }
-      else
-        format.html { redirect_to @retweet, status: :unprocessable_entity }
-        format.turbo_stream { render :edit }
-      end
-    end
-  end
-
   private
 
   def resource
