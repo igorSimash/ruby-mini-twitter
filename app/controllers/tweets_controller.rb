@@ -26,10 +26,12 @@ class TweetsController < ApplicationController
   def create
     @tweet = current_user.tweets.new(tweet_params)
 
+    notice_message = "Tweet was successfully created"
+
     respond_to do |format|
       if @tweet.save
-        format.html { redirect_to @tweet, notice: "Tweet was successfully created" }
-        format.turbo_stream { flash.now[:notice] = "Tweet was successfully created" }
+        format.html { redirect_to @tweet, notice: notice_message }
+        format.turbo_stream { flash.now[:notice] = notice_message }
       else
         format.html { render :new, status: :unprocessable_entity }
         format.turbo_stream { render :new }
@@ -41,10 +43,12 @@ class TweetsController < ApplicationController
   def update
     @tweet = resource
 
+    notice_message = "Tweet was successfully updated"
+
     respond_to do |format|
       if @tweet.update(tweet_params)
-        format.html { redirect_to @tweet, notice: "Tweet was successfully updated", status: :see_other }
-        format.turbo_stream { flash.now[:notice] = "Tweet was successfully updated" }
+        format.html { redirect_to @tweet, notice: notice_message, status: :see_other }
+        format.turbo_stream { flash.now[:notice] = notice_message }
       else
         format.html { redirect_to @tweet, status: :unprocessable_entity }
         format.turbo_stream { render :edit }
@@ -76,7 +80,7 @@ class TweetsController < ApplicationController
   end
 
   def check_author!
-    redirect_to authenticated_root_path, alert: "You are not authorized to perform this action." unless resource.user == current_user
+    redirect_to authenticated_root_path, alert: "You are not authorized to perform this action." if resource.user != current_user
   end
 
   def tweet_params
