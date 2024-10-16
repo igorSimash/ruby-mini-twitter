@@ -1,0 +1,31 @@
+<div class="controls_container">
+  <div class="flex items-center gap-1">
+    <%= inline_svg_tag "icons/heart.svg", class: "cursor-pointer hover:text-red-500" %>
+    <span>
+      <%= tweet.likes.size %>
+    </span>
+  </div>
+
+  <div class="flex items-center gap-1">
+    <%= inline_svg_tag "icons/comment.svg", class: "cursor-pointer hover:text-blue-600" %>
+    <span>
+      <%= tweet.comments.size %>
+    </span>
+  </div>
+
+  <div data-controller="dropdown" data-dropdown-hide-class="hidden" class="relative inline-flex">
+    <%= button_tag data: {action: "click->dropdown#toggle"},
+        class: "flex gap-1.5 hover:text-green-500 focus:outline-none" do %>
+      <%= inline_svg_tag("icons/retweet.svg") %>
+      Retweet
+    <% end %>
+
+    <div data-dropdown-target="menu" class="hidden dropdown_menu"
+        role="menu" aria-orientation="vertical" aria-labelledby="retweet-menu">
+      <div class="py-1">
+        <p class="dropdown_item" role="menuitem">Retweet</p>
+        <p class="dropdown_item" role="menuitem">Repost with comment</p>
+      </div>
+    </div>
+  </div>
+</div>
