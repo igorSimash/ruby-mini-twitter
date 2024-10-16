@@ -1,0 +1,21 @@
+<%= simple_form_for @tweet, html: { class: "tweets_form" } do |f| %>
+  <div data-controller="char-count" data-char-count-max-length-value="300" data-char-count-warning-class="text-red-500"
+      class="space-y-4">
+    <div class="space-y-2">
+      <%= f.text_area :body, autofocus: true, autocomplete: "body", rows: 6, maxlength: 300,
+        data: { char_count_target: "textarea",
+                action: "input->char-count#updateCount" } %>
+      <% if tweet.errors.any? %>
+        <span class="text-red-500">
+          <%= tweet.errors.full_messages.first %>
+        </span>
+      <% end %>
+    </div>
+    <div class="flex items-center justify-between">
+      <span class="text-sm text-gray-500" id="char-counter"
+          data-char-count-warning-class="text-red-500" data-char-count-target="counter">
+      </span>
+      <%= f.submit "Tweet" %>
+    </div>
+  </div>
+<% end %>

@@ -1,0 +1,13 @@
+<%= turbo_frame_tag "modal" do %>
+  <div class="modal-bg" id="modal-container" data-controller="modals">
+    <div class="max-w-xl p-8 mx-auto my-8 bg-white shadow-md md:max-w-2xl rounded-xl">
+      <%= button_tag data: {action: "click->modals#close"} do %>
+        <%= inline_svg_tag("icons/arrow_left.svg") %>
+      <% end %>
+
+      <h1 class="my-6 text-4xl font-bold">Editing tweet</h1>
+
+      <%= render "tweets/shared/form", tweet: @tweet %>
+    </div>
+  </div>
+<% end %>
