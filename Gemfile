@@ -13,6 +13,9 @@ gem "bootsnap", require: false
 gem "redis", ">= 4.0.1"
 gem "devise"
 gem "inline_svg"
+gem "kaminari"
+gem "requestjs-rails"
+gem "simple_form"
 
 group :development, :test do
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
@@ -20,6 +23,8 @@ group :development, :test do
   gem "rubocop-rails-omakase", require: false
   gem "rspec-rails", "~> 7.0.1"
   gem "shoulda-matchers", "~> 6.4"
+  gem "factory_bot_rails"
+  gem "faker"
 end
 
 group :development do
