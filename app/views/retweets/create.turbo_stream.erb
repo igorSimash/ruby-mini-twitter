@@ -1,4 +1,4 @@
-<%= turbo_stream.update "tweet-body", format_body(@tweet.body) %>
+<%= turbo_stream.prepend "tweets", partial: "shared/tweets/tweet_variant", locals: { tweet: @retweet } %>
 
 <%= turbo_stream.remove "modal-container" %>
 

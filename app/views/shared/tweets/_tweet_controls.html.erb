@@ -23,8 +23,11 @@
     <div data-dropdown-target="menu" class="hidden dropdown_menu"
         role="menu" aria-orientation="vertical" aria-labelledby="retweet-menu">
       <div class="py-1">
-        <p class="dropdown_item" role="menuitem">Retweet</p>
-        <p class="dropdown_item" role="menuitem">Repost with comment</p>
+        <%= button_to "Repost", tweet_reposts_path(tweet), method: :post, data: {action: "click->dropdown#close"},
+            class: "dropdown_item" %>
+
+        <%= link_to "Retweet", new_tweet_retweet_path(tweet), data: {turbo_frame: "modal"},
+            class: "dropdown_item" %>
       </div>
     </div>
   </div>

@@ -1,0 +1,13 @@
+<div class="block max-w-xl mx-auto bg-white shadow-md rounded-xl md:max-w-3xl">
+  <div class="px-4 py-2 border-b">
+    <p class="text-sm">
+      @<%= tweet.user.username %> reposted
+    </p>
+  </div>
+
+  <% if tweet.origin.retweet? %>
+    <%= render "shared/tweets/retweet", tweet: tweet.origin %>
+  <% else %>
+    <%= render "shared/tweets/basic_tweet", tweet: tweet.origin %>
+  <% end %>
+</div>

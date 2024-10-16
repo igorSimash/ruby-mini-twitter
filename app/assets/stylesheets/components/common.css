@@ -22,4 +22,12 @@
   .modal-bg {
     @apply fixed w-screen h-screen top-0 right-0 z-20 bg-gray-900/40
   }
+
+  .main_flash {
+    @apply fixed bottom-8 left-1/2 -translate-x-1/2 space-y-4
+  }
+
+  .main_flash .alert {
+    @apply mx-auto text-sm w-fit p-2 rounded-md
+  }
 }

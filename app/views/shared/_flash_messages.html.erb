@@ -1,6 +1,6 @@
 <% flash.each do |type, message| %>
   <% if message.present? %>
-    <div class="alert <%= flash_class(type) %>">
+    <div class="alert <%= flash_class(type) %>" data-controller="flash-message">
       <%= message %>
     </div>
   <% end %>
