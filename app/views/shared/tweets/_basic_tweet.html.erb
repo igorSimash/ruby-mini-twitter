@@ -3,7 +3,7 @@
     <%= link_to tweet_path(tweet) do %>
       <div class="mb-4">
         <p class="text-lg font-semibold text-gray-900">@<%= tweet.user.username %></p>
-        <p class="text-sm text-gray-600"><%= tweet.created_at.to_formatted_s(:long) %></p>
+        <p class="text-sm text-gray-600"><%= l(tweet.created_at, format: :long) %></p>
       </div>
       <p class="tweet_body"><%= format_body(tweet.body) %></p>
     <% end %>

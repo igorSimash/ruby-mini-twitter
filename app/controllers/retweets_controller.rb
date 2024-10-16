@@ -13,10 +13,14 @@ class RetweetsController < ApplicationController
 
     respond_to do |format|
       if @retweet.save
-        format.html { redirect_to @retweet, notice: "Retweet was successfully created" }
-        format.turbo_stream { flash.now[:notice] = "Retweet was successfully created" }
+        flash[:notice] = "Retweet was successfully created"
+
+        format.html { redirect_to @retweet }
+        format.turbo_stream
       else
-        format.html { redirect_to authenticated_root_path, notice: "There was an error during retweeting the tweet" }
+        flash[:alert] = "There was an error during retweeting the tweet"
+
+        format.html { redirect_to authenticated_root_path, status: :unprocessable_entity }
         format.turbo_stream { render :new }
       end
     end

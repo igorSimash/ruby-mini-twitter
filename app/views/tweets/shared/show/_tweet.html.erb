@@ -2,7 +2,7 @@
   <div class="flex items-center justify-between mb-2">
     <div>
       <p class="mb-0.5 text-lg font-bold">@<%= tweet.user.username %></p>
-      <p class="text-sm text-gray-500"><%= tweet.created_at.to_formatted_s(:long) %></p>
+      <p class="text-sm text-gray-500"><%= l(tweet.created_at, format: :long) %></p>
     </div>
     <% if current_user == tweet.user %>
       <div data-controller="dropdown" data-dropdown-hide-class="hidden" class="relative">

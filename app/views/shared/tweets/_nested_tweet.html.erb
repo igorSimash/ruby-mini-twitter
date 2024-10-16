@@ -1,7 +1,7 @@
 <div class="px-4 pt-3 mb-4 border-2 border-gray-400 rounded-lg">
   <div class="mb-2">
     <p class="text-base font-semibold text-gray-900">@<%= tweet.user.username %></p>
-    <p class="text-xs text-gray-600"><%= tweet.created_at.to_formatted_s(:long) %></p>
+    <p class="text-xs text-gray-600"><%= l(tweet.created_at, format: :long) %></p>
   </div>
   <p class="mb-2 text-sm font-medium text-gray-700 break-words whitespace-pre-wrap"><%= format_body(tweet.body) %></p>
 </div>

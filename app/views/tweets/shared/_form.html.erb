@@ -5,7 +5,7 @@
       <%= f.text_area :body, autofocus: true, autocomplete: "body", rows: 6, maxlength: 300,
         data: { char_count_target: "textarea",
                 action: "input->char-count#updateCount" } %>
-      <% if tweet.errors.any? %>
+      <% if tweet.errors.present? %>
         <span class="text-red-500">
           <%= tweet.errors.full_messages.first %>
         </span>

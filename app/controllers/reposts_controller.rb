@@ -8,10 +8,14 @@ class RepostsController < ApplicationController
 
     respond_to do |format|
       if @repost.save
-        format.html { redirect_to @repost, notice: "Repost was successfully created" }
-        format.turbo_stream { flash.now[:notice] = "Repost was successfully created" }
+        flash[:notice] = "Repost was successfully created"
+
+        format.html { redirect_to @repost }
+        format.turbo_stream
       else
-        format.html { redirect_to authenticated_root_path, notice: "There was an error during reposting the tweet" }
+        flash[:alert] = "There was an error during reposting the tweet"
+
+        format.html { redirect_to authenticated_root_path, status: :unprocessable_entity }
       end
     end
   end

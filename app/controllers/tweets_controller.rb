@@ -29,9 +29,12 @@ class TweetsController < ApplicationController
     respond_to do |format|
       if @tweet.save
         flash[:notice] = "Tweet was successfully created"
+
         format.html { redirect_to @tweet }
         format.turbo_stream
       else
+        flash[:alert] = "There was an error during creating the tweet"
+
         format.html { render :new, status: :unprocessable_entity }
         format.turbo_stream { render :new }
       end
@@ -45,9 +48,12 @@ class TweetsController < ApplicationController
     respond_to do |format|
       if @tweet.update(tweet_params)
         flash[:notice] = "Tweet was successfully updated"
+
         format.html { redirect_to @tweet, status: :see_other }
         format.turbo_stream
       else
+        flash[:alert] = "There was an error during updating the tweet"
+
         format.html { redirect_to @tweet, status: :unprocessable_entity }
         format.turbo_stream { render :edit }
       end
