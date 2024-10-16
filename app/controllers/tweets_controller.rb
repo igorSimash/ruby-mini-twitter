@@ -26,12 +26,11 @@ class TweetsController < ApplicationController
   def create
     @tweet = current_user.tweets.new(tweet_params)
 
-    notice_message = "Tweet was successfully created"
-
     respond_to do |format|
       if @tweet.save
-        format.html { redirect_to @tweet, notice: notice_message }
-        format.turbo_stream { flash.now[:notice] = notice_message }
+        flash[:notice] = "Tweet was successfully created"
+        format.html { redirect_to @tweet }
+        format.turbo_stream
       else
         format.html { render :new, status: :unprocessable_entity }
         format.turbo_stream { render :new }
@@ -43,12 +42,11 @@ class TweetsController < ApplicationController
   def update
     @tweet = resource
 
-    notice_message = "Tweet was successfully updated"
-
     respond_to do |format|
       if @tweet.update(tweet_params)
-        format.html { redirect_to @tweet, notice: notice_message, status: :see_other }
-        format.turbo_stream { flash.now[:notice] = notice_message }
+        flash[:notice] = "Tweet was successfully updated"
+        format.html { redirect_to @tweet, status: :see_other }
+        format.turbo_stream
       else
         format.html { redirect_to @tweet, status: :unprocessable_entity }
         format.turbo_stream { render :edit }
