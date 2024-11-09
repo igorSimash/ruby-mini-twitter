@@ -84,7 +84,8 @@ class TweetsController < ApplicationController
   end
 
   def check_author!
-    redirect_to authenticated_root_path, alert: "You are not authorized to perform this action." if resource.user != current_user
+    redirect_to authenticated_root_path,
+      alert: "You are not authorized to perform this action." if resource.user != current_user
   end
 
   def tweet_params
