@@ -16,6 +16,7 @@ class RepostsController < ApplicationController
         flash[:alert] = "There was an error during reposting the tweet"
 
         format.html { redirect_to authenticated_root_path, status: :unprocessable_entity }
+        format.turbo_stream { render :new }
       end
     end
   end

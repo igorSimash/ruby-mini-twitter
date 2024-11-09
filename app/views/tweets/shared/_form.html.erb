@@ -12,7 +12,7 @@
       <% end %>
     </div>
 
-    <% if @tweet.origin.present? %>
+    <% if @tweet.retweet? %>
       <%= render "shared/tweets/nested_tweet", tweet: @tweet.origin %>
     <% end %>
 
