@@ -1,0 +1,36 @@
+<div class="pb-4 my-4 border-b border-gray-200">
+  <div class="flex items-center justify-between mb-2">
+    <div>
+      <p class="mb-0.5 text-lg font-bold">@<%= tweet.user.username %></p>
+      <p class="text-sm text-gray-500"><%= l(tweet.created_at, format: :long) %></p>
+    </div>
+    <% if current_user == tweet.user %>
+      <div data-controller="dropdown" data-dropdown-hide-class="hidden" class="relative">
+        <%= button_tag data: {action: "click->dropdown#toggle"}, class: "text-gray-500 hover:text-gray-700" do %>
+          <%= inline_svg_tag("icons/menu_dots") %>
+        <% end %>
+
+        <div data-dropdown-target="menu"
+            class="hidden dropdown_menu"
+            role="menu" aria-orientation="vertical" aria-labelledby="retweet-menu">
+          <div class="py-1">
+            <%= link_to "Edit", edit_tweet_path(tweet), data: {turbo_frame: "modal"},
+              class:"edit_btn", role: "menuitem" %>
+            <%= button_to "Delete", tweet, method: :delete, data: { turbo: false },
+              class: "delete_btn", role: "menuitem" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <p class="mb-4 text-lg break-words whitespace-pre-wrap" id="tweet-body"><%= format_body(tweet.body) %></p>
+
+  <% if tweet.origin.present? %>
+    <%= link_to tweet_path(tweet.origin) do %>
+      <%= render "shared/tweets/nested_tweet", tweet: tweet.origin %>
+    <% end %>
+  <% end %>
+
+  <%= render "shared/tweets/tweet_controls", tweet: tweet %>
+</div>

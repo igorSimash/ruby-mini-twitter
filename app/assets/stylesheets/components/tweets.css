@@ -22,19 +22,15 @@
   }
 
   .controls_container .dropdown_item {
-    @apply block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900
+    @apply block w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 text-left
   }
 
   .new_tweet_btn {
     @apply link-primary w-24 md:w-32 md:h-14 font-medium flex items-center justify-center fixed bottom-10 right-2 md:right-5
   }
 
-  .tweet_flash .alert {
-    @apply mx-auto mt-4 text-sm w-fit px-2 py-1.5 rounded-md
-  }
-
   .tweet_item {
-    @apply block max-w-xl mx-auto my-8 bg-white shadow-md rounded-xl md:max-w-3xl
+    @apply block max-w-xl mx-auto bg-white shadow-md rounded-xl md:max-w-3xl
   }
 
   .show_tweet {

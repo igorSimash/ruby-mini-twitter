@@ -1,17 +1,15 @@
 <% content_for :title, "Feed" %>
 
-<div class="relative w-full">
-  <div id="tweet_flash" class="tweet_flash">
-    <%= render "tweets/shared/flash_messages" %>
-  </div>
+<div class="relative w-full py-4">
 
-  <div class="min-w-full" id="tweets">
-    <%= render partial: "tweets/shared/tweet", collection: @tweets %>
+  <div class="min-w-full space-y-8" id="tweets">
+    <%= render partial: "shared/tweets/tweet_variant", collection: @tweets, as: :tweet %>
   </div>
 
   <% if @tweets.next_page %>
-    <%= turbo_frame_tag "load_more", src: tweets_path(page:  @tweets.next_page, format: :turbo_stream), loading: :lazy %>
+    <%= turbo_frame_tag "load_more", src: tweets_path(page:  @tweets.next_page, format: :turbo_stream),
+        loading: :lazy %>
   <% end %>
 
-   <%= link_to "Post", new_tweet_path, data: {turbo_frame: "modal"}, class: "new_tweet_btn" %>
+  <%= link_to "Post", new_tweet_path, data: {turbo_frame: "modal"}, class: "new_tweet_btn" %>
 </div>

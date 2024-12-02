@@ -1,5 +1,5 @@
-<%= turbo_stream.prepend "tweets", partial: "tweets/shared/tweet", locals: { tweet: @tweet } %>
+<%= turbo_stream.prepend "tweets", partial: "shared/tweets/tweet_variant", locals: { tweet: @tweet } %>
 
 <%= turbo_stream.remove "modal-container" %>
 
-<%= turbo_stream.prepend "tweet_flash", partial: "tweets/shared/flash_messages" %>
+<%= turbo_stream.prepend "main_flash", partial: "shared/flash_messages" %>
